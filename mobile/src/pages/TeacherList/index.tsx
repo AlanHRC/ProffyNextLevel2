@@ -19,7 +19,7 @@ const TeacherList: React.FC = () => {
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
   const [subject, setSubject] = useState('');
-  const [week_day, setWeekDay] = useState('');
+  const [weekDay, setWeekDay] = useState('');
   const [time, setTime] = useState('');
 
   const loadFavorites = useCallback(() => {
@@ -48,10 +48,11 @@ const TeacherList: React.FC = () => {
   const handleFiltersSubmit = useCallback(async () => {
     loadFavorites();
 
+
     const response = await api.get('/classes', {
       params: {
         subject: subject,
-        week_day: Number(week_day),
+        week_day: weekDay,
         time: time,
       }
     });
@@ -88,7 +89,7 @@ const TeacherList: React.FC = () => {
                 style={styles.input}
                 placeholder="Qual o dia?"
                 placeholderTextColor="#c1bccc"
-                value={week_day}
+                value={weekDay}
                 onChangeText={text => setWeekDay(text)}
               />
             </View>
